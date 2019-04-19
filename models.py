@@ -140,7 +140,10 @@ def OctConv(hf_data, lf_data, settings, ch_in, ch_out, name, kernel=(1,1), paddi
         hf_pool_conv = None
         
     if lf_data is not None:
-        lf_data_pad = ZeroPadding2D(((padding, padding), (padding, padding)))(lf_data)
+        if padding > 0:
+            lf_data_pad = ZeroPadding2D(((padding, padding), (padding, padding)))(lf_data)
+        else:
+            lf_data_pad = lf_data
         lf_conv = Conv2D(hf_ch_out, kernel, name=('%s_lf_conv' % name))(lf_data_pad)
 
         if stride == (2, 2):
