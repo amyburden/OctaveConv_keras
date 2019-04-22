@@ -178,10 +178,6 @@ def base_model(input_shape=(224, 224, 3), weights=None, bottleneck=256, alpha=0.
     epsilon = kwargs.get('epsilon', 2e-5)
     
     num_stages = 4
-    if num_layers > 101:
-        filter_list = [128*ft_mult, 512*ft_mult, 1024*ft_mult, 2048*ft_mult, 4096*ft_mult]
-    else:
-        filter_list = [64*ft_mult, 256*ft_mult, 512*ft_mult, 1024*ft_mult, 2048*ft_mult]
     
     filter_list = map(int, filter_list)
     if num_layers == 18:
